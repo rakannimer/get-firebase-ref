@@ -1,0 +1,68 @@
+# Get Firebase Ref
+
+Get a Firebase ref to a firebase node from a query and firebase module (web or admin)
+
+```typescript
+export interface FirebaseQuery {
+  firebase?: any;
+  path: string;
+  orderByChild?: null | string;
+  orderByKey?: null | any;
+  orderByValue?: null | any;
+  limitToFirst?: null | number;
+  limitToLast?: null | number;
+  startAt?: null | number;
+  endAt?: null | number;
+  equalTo?: null | any;
+  keysOnly?: boolean;
+  once?: boolean;
+  isList?: boolean;
+}
+
+export const getFirebaseRef = ({
+  firebase = null,
+  path,
+  orderByChild = null,
+  orderByKey = null,
+  orderByValue = null,
+  limitToFirst = null,
+  limitToLast = null,
+  startAt = null,
+  endAt = null,
+  equalTo = null
+}: FirebaseQuery) => {
+  if (firebase === null) {
+    throw new Error("Need to supply firebase argument to getFirebaseRef");
+  }
+  if (path === null || typeof path === "undefined") {
+    throw new Error("Need to supply path argument to getFirebaseRef");
+  }
+  let result = firebase.database().ref(path);
+  if (orderByChild !== null) {
+    result = result.orderByChild(orderByChild);
+  }
+  if (orderByKey !== null) {
+    result = result.orderByKey();
+  }
+  if (orderByValue !== null) {
+    result = result.orderByValue();
+  }
+  if (limitToFirst !== null) {
+    result = result.limitToFirst(limitToFirst);
+  }
+  if (limitToLast !== null) {
+    result = result.limitToLast(limitToLast);
+  }
+  if (startAt !== null) {
+    result = result.startAt(startAt);
+  }
+  if (endAt !== null) {
+    result = result.endAt(endAt);
+  }
+  if (equalTo !== null) {
+    result = result.equalTo(equalTo);
+  }
+  return result;
+};
+
+```
