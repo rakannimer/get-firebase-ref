@@ -18,7 +18,6 @@ Provides getFirebaseRef function as default and named exports
 
 ```typescript
 import { getFirebaseRef } from "get-firebase-ref";
-import getFirebaseRef from "get-firebase-ref";
 import firebase from "firebase/app";
 import "firebase/database";
 
