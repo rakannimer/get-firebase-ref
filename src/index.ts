@@ -59,3 +59,5 @@ export const getFirebaseRef = ({
   }
   return result;
 };
+
+export default getFirebaseRef;
